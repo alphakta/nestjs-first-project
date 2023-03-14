@@ -1,6 +1,5 @@
 import { Body, Controller, Get, Header, HttpCode, Param, Post, Query, Redirect, Req } from '@nestjs/common';
-import { type } from 'os';
-import { UserService } from 'src/services/user.service';
+import { UserService } from '../services/user.service';
 
 @Controller('users')
 export class UserController {
