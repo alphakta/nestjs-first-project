@@ -1,11 +1,13 @@
-import { Body, Controller, Get, Header, HttpCode, Param, Post, Query, Redirect, Req } from '@nestjs/common';
+import { Body, Controller, Get, Header, HttpCode, Param, Post, Query, Redirect, Req, Inject } from '@nestjs/common';
 import { UserService } from '../services/user.service';
+import { MON_JETON } from 'src/constants';
 
 @Controller('users')
 export class UserController {
 
   constructor(
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    @Inject(MON_JETON) private readonly monJeton: Record<string, object>
   ) { }
 
   @Get('/')
