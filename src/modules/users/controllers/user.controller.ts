@@ -1,18 +1,20 @@
 import { Body, Controller, Get, Header, HttpCode, Param, Post, Query, Redirect, Req, Inject } from '@nestjs/common';
 import { UserService } from '../services/user.service';
-import { MON_JETON } from 'src/constants';
+import { MON_ENV, MON_JETON } from 'src/constants';
 
 @Controller('users')
 export class UserController {
 
   constructor(
     private readonly userService: UserService,
-    @Inject(MON_JETON) private readonly monJeton: Record<string, object>
+    @Inject(MON_JETON) private readonly monJeton: Record<string, object>,
+    @Inject(MON_ENV) private readonly monEnv: Record<string, object>,
   ) { }
 
   @Get('/')
   returnAllUsers(): string {
     console.log(this.userService.findAll())
+    console.log(this.monEnv)
     return JSON.stringify(this.userService.findAll());
   }
 
